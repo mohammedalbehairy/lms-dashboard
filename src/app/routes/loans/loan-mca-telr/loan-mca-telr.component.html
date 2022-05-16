@@ -1,0 +1,19 @@
+<nz-card [nzBordered]="false">
+    <nz-card-tab>
+        <nz-tabset nzSize="large" (nzSelectChange)="changeTab($event)" [nzSelectedIndex]="selectedTab"
+            [nzTabBarExtraContent]="extraTemplate">
+            <nz-tab nzTitle="Details"></nz-tab>
+            <nz-tab nzTitle="Schedule"></nz-tab>
+            <nz-tab nzTitle="Transactions"></nz-tab>
+        </nz-tabset>
+        <ng-template #extraTemplate>
+            <button nz-button (click)="enterRepayment()" [nzType]="'primary'">
+                <i nz-icon nzType="plus"></i>
+                <span>Enter Repayment</span>
+            </button>
+        </ng-template>
+    </nz-card-tab>
+
+</nz-card>
+
+<router-outlet></router-outlet>

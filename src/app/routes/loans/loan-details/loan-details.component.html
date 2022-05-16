@@ -1,0 +1,9 @@
+<page-header [title]="'Account Id or Any think Like mambu'" [tab]="tab">
+
+    <ng-template #tab>
+        <nz-tabset [nzSelectedIndex]="selectedTab">
+            <nz-tab *ngFor="let i of tabs" [nzTitle]="i.tab" (nzClick)="changeTab(i)"></nz-tab>
+        </nz-tabset>
+    </ng-template>
+</page-header>
+<router-outlet></router-outlet>

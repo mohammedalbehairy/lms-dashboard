@@ -1,0 +1,64 @@
+<nz-card [nzBordered]="false" class="mb-lg">
+    <div nz-row *ngIf="data">
+        <div nz-col nzXs="24" nzSm="12">
+            <sv-container class="mb-lg" title="General" col="1">
+                <nz-divider [ngStyle]="{'margin-top':0}"></nz-divider>
+                <sv label="Account ID">{{data.loanId}}</sv>
+                <sv label="Assigned to Branch">{{data.branch}}</sv>
+                <sv label="Account State">{{data.state}}</sv>
+                <sv label="Currency">$ {{data.currency}}</sv>
+                <sv label="Activation Date">{{data.activationDate}}</sv>
+                <sv label="Product">{{data.product}}</sv>
+                <sv label="Product Type">{{data.productType}}</sv>
+                <sv label="Loan Amount">${{data.loanAmount}}</sv>
+                <sv label="Interest Rate">{{data.interestRate}}</sv>
+                <sv label="Penalty Rate">{{data.penaltyRate}}</sv>
+                <sv label="Tax Rate">{{data.taxRate}}</sv>
+                <sv label="Tax Rate Source">{{data.taxRateSource}}</sv>
+                <sv label="Interest Calculation Method">{{data.interestCalculationMethod}}</sv>
+                <sv label="Accrued Interest Posting Frequency">{{data.accruedInterestPostingFrequency}}</sv>
+                <sv label="Penalty Calculation Method">{{data.penaltyCalculationMethod}}</sv>
+                <sv label="Apply Interest on Pre-Payment">{{data['applyInterestonPre-Payment']}}</sv>
+                <sv label="Arrears Tolerance Period">{{data.arrearsTolerancePeriod}}</sv>
+                <sv label="With a floor (minimum)">{{data.withAFloor}}</sv>
+                <sv label="Payment Allocation Method">{{data.paymentAllocationMethod}}</sv>
+                <sv label="Repayments Are Made Every">{{data.repaymentsAreMadeEvery}}</sv>
+                <sv label="Number of Installments">{{data.numberofInstallments}}</sv>
+                <sv label="Collect Principal Every">{{data.collectPrincipalEvery}}</sv>
+                <sv label="Pre-Payments Acceptance">{{data.PaymentsAcceptance}}</sv>
+                <sv label="Pre-Payment Recalculation">{{data.PaymentRecalculation}}</sv>
+                <sv label="Mark Installment as Paid When">{{data.markInstallmentasPaidWhen}}</sv>
+                <sv label="Overdue Payments">{{data.overduePayments}}</sv>
+                <sv label="Accrue Late Interest">{{data.accrueLateInterest}}</sv>
+            </sv-container>
+        </div>
+        <div nz-col nzXs="24" nzSm="12">
+            <sv-container class="mb-lg" title="Contact" col="1">
+                <nz-divider [ngStyle]="{'margin-top':0}"></nz-divider>
+                <sv label="Principal Balance">{{data.principalBalance}}</sv>
+                <sv label="Interest Balance">{{data.interestBalance}}</sv>
+                <sv label="Interest from Arrears Balance">{{data.interestfromArrearsBalance}}</sv>
+                <sv label="Interest Accrued">{{data.interestAccrued}}</sv>
+                <sv label="Fee Balance">{{data.feeBalance}}</sv>
+                <sv>&nbsp;</sv>
+                <sv label="Total Due">{{data.totalDue}}</sv>
+                <sv label="Principal Due">{{data.principalDue}}</sv>
+                <sv label="Interest Due">{{data.interestDue}}</sv>
+                <sv label="Interest from Arrears Due">{{data.interestFromArrearsDue}}</sv>
+                <sv label="Fees Due">{{data.feesDue}}</sv>
+                <sv label="Penalty Due">{{data.penaltyDue}}</sv>
+                <sv>&nbsp;</sv>
+                <sv label="Total Paid">{{data.totalPaid}}</sv>
+                <sv label="Principal Paid">{{data.principalPaid}}</sv>
+                <sv label="Interest Paid">{{data.interestPaid}}</sv>
+                <sv label="Interest from Arrears Paid">{{data.interestFromArrearsPaid}}</sv>
+                <sv label="Fees Paid">{{data.feesPaid}}</sv>
+                <sv label="Penalty Paid">{{data.penaltyPaid}}</sv>
+                <sv>&nbsp;</sv>
+                <sv label="Documentation Charges">{{data.documentationCharges}}</sv>
+                <sv label="Credit Bureau Charge">{{data.creditBureauCharge}}</sv>
+                <sv label="Processing Charges">{{data.processingCharges}}</sv>
+            </sv-container>
+        </div>
+    </div>
+</nz-card>

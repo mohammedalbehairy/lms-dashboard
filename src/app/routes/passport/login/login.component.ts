@@ -9,6 +9,49 @@ import { environment } from '@env/environment';
 import { NzTabChangeEvent } from 'ng-zorro-antd/tabs';
 import { finalize } from 'rxjs/operators';
 
+export const USERS = [
+  {
+    userName: 'mohammed',
+    password: 'Lnddo#2020',
+    email: 'mohammed@mohammed.com',
+    expired: 16526570992690,
+    id: 10000,
+    name: 'mohammed',
+    time: 16526567989670,
+    token: '1234567890'
+  },
+  {
+    userName: 'ahmed',
+    password: 'Lnddo#2021',
+    email: 'ahmed@ahmed.com',
+    expired: 16526570992691,
+    id: 10001,
+    name: 'ahmed',
+    time: 16526567989671,
+    token: '1234567891'
+  },
+  {
+    userName: 'admin',
+    password: 'Lnddo#2022',
+    email: 'admin@admin.com',
+    expired: 16526570992693,
+    id: 10003,
+    name: 'admin',
+    time: 16526567989673,
+    token: '1234567893'
+  },
+  {
+    userName: 'lnddo',
+    password: 'Lnddo#2022',
+    email: 'lnddo@lnddo.com',
+    expired: 16526570992694,
+    id: 10004,
+    name: 'lnddo',
+    time: 16526567989674,
+    token: '1234567894'
+  }
+];
+
 @Component({
   selector: 'passport-login',
   templateUrl: './login.component.html',
@@ -31,8 +74,10 @@ export class UserLoginComponent implements OnDestroy {
     private cdr: ChangeDetectorRef
   ) {
     this.form = fb.group({
-      userName: [null, [Validators.required, Validators.pattern(/^(admin|user)$/)]],
-      password: [null, [Validators.required, Validators.pattern(/^(ng\-alain\.com)$/)]],
+      userName: [null, [Validators.required]],
+      password: [null, [Validators.required]],
+      // userName: [null, [Validators.required, Validators.pattern(/^(admin|user)$/)]],
+      // password: [null, [Validators.required, Validators.pattern(/^(ng\-alain\.com)$/)]],
       mobile: [null, [Validators.required, Validators.pattern(/^1\d{10}$/)]],
       captcha: [null, [Validators.required]],
       remember: [true]
@@ -86,6 +131,65 @@ export class UserLoginComponent implements OnDestroy {
 
   // #endregion
 
+  // submit(): void {
+  //   this.error = '';
+  //   if (this.type === 0) {
+  //     this.userName.markAsDirty();
+  //     this.userName.updateValueAndValidity();
+  //     this.password.markAsDirty();
+  //     this.password.updateValueAndValidity();
+  //     if (this.userName.invalid || this.password.invalid) {
+  //       return;
+  //     }
+  //   } else {
+  //     this.mobile.markAsDirty();
+  //     this.mobile.updateValueAndValidity();
+  //     this.captcha.markAsDirty();
+  //     this.captcha.updateValueAndValidity();
+  //     if (this.mobile.invalid || this.captcha.invalid) {
+  //       return;
+  //     }
+  //   }
+
+  //   this.loading = true;
+  //   this.cdr.detectChanges();
+  //   this.http
+  //     .post('/login/account?_allow_anonymous=true', {
+  //       type: this.type,
+  //       userName: this.userName.value,
+  //       password: this.password.value
+  //     })
+  //     .pipe(
+  //       finalize(() => {
+  //         this.loading = true;
+  //         this.cdr.detectChanges();
+  //       })
+  //     )
+  //     .subscribe(res => {
+  //       console.log('===res====res====', res);
+
+  //       if (res.msg !== 'ok') {
+  //         this.error = res.msg;
+  //         this.cdr.detectChanges();
+  //         return;
+  //       }
+  //       // 清空路由复用信息
+  //       this.reuseTabService.clear();
+
+  //       // TODO: Mock expired value
+  //       res.user.expired = +new Date() + 1000 * 60 * 5;
+  //       this.tokenService.set(res.user);
+
+  //       this.startupSrv.load().subscribe(() => {
+  //         let url = this.tokenService.referrer!.url || '/';
+  //         if (url.includes('/passport')) {
+  //           url = '/';
+  //         }
+  //         this.router.navigateByUrl(url);
+  //       });
+  //     });
+  // }
+
   submit(): void {
     this.error = '';
     if (this.type === 0) {
@@ -106,43 +210,30 @@ export class UserLoginComponent implements OnDestroy {
       }
     }
 
-    // 默认配置中对所有HTTP请求都会强制 [校验](https://ng-alain.com/auth/getting-started) 用户 Token
-    // 然一般来说登录请求不需要校验，因此可以在请求URL加上：`/login?_allow_anonymous=true` 表示不触发用户 Token 校验
-    this.loading = true;
-    this.cdr.detectChanges();
-    this.http
-      .post('/login/account?_allow_anonymous=true', {
-        type: this.type,
-        userName: this.userName.value,
-        password: this.password.value
-      })
-      .pipe(
-        finalize(() => {
-          this.loading = true;
-          this.cdr.detectChanges();
-        })
-      )
-      .subscribe(res => {
-        if (res.msg !== 'ok') {
-          this.error = res.msg;
-          this.cdr.detectChanges();
-          return;
-        }
-        // 清空路由复用信息
-        this.reuseTabService.clear();
-        // 设置用户Token信息
-        // TODO: Mock expired value
-        res.user.expired = +new Date() + 1000 * 60 * 5;
-        this.tokenService.set(res.user);
-        // 重新获取 StartupService 内容，我们始终认为应用信息一般都会受当前用户授权范围而影响
-        this.startupSrv.load().subscribe(() => {
-          let url = this.tokenService.referrer!.url || '/';
-          if (url.includes('/passport')) {
-            url = '/';
-          }
-          this.router.navigateByUrl(url);
-        });
-      });
+    let userName = this.userName.value;
+    let password = this.password.value;
+    console.log('------userName-----', userName);
+    console.log('-----password------', password);
+
+    let user = USERS.find(u => u.userName == userName && u.password == password);
+    console.log('-----user------', user);
+    if (!user) {
+      this.error = 'User name or password is wrong';
+      this.cdr.detectChanges();
+      return;
+    }
+    this.reuseTabService.clear();
+
+    user.expired = +new Date() + 1000 * 60 * 5;
+    this.tokenService.set(user);
+
+    this.startupSrv.load().subscribe(() => {
+      let url = this.tokenService.referrer!.url || '/';
+      if (url.includes('/passport')) {
+        url = '/';
+      }
+      this.router.navigateByUrl(url);
+    });
   }
 
   // #region social

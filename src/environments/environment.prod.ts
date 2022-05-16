@@ -4,7 +4,7 @@ export const environment = {
   production: true,
   useHash: true,
   api: {
-    baseUrl: './',
+    baseUrl: 'http://lnddo-lms.azurewebsites.net',
     refreshTokenEnabled: true,
     refreshTokenType: 'auth-refresh'
   }

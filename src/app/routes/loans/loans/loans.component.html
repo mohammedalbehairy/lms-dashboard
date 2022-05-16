@@ -1,0 +1,13 @@
+<page-header [title]="'List Loans'"></page-header>
+<nz-card [nzBordered]="false">
+    <st #st [columns]="columns" [data]="data" [loading]="loading">
+    </st>
+</nz-card>
+<ng-template #modalContent>
+    <nz-form-item>
+        <nz-form-label nzFor="no">描述</nz-form-label>
+        <nz-form-control>
+            <input nz-input [(ngModel)]="description" name="description" placeholder="请输入" id="no" />
+        </nz-form-control>
+    </nz-form-item>
+</ng-template>

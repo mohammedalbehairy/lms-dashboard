@@ -1,0 +1,107 @@
+<div class="modal-header">
+    <div class="modal-title">Apply A Repayment</div>
+</div>
+<form (ngSubmit)="save()" [formGroup]="repaymentForm!">
+    <nz-form-item class="mb-sm">
+        <nz-form-label nzSpan="4">Amount</nz-form-label>
+        <nz-form-control nzSpan="8">
+            <nz-input-number formControlName="amount" name="amount" [nzMin]="0" [nzStep]="10"></nz-input-number>
+            <em>$</em>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item class="mb-sm">
+        <nz-form-label nzSpan="4">:</nz-form-label>
+        <nz-form-control nzSpan="8">
+            <label nz-checkbox formControlName="customRep">
+                <span>
+                    Custom Repayment
+                </span>
+            </label>
+        </nz-form-control>
+    </nz-form-item>
+
+
+    <!-- Group together -->
+    <nz-form-item class="mb-sm">
+        <nz-form-label nzSpan="4">Repayment Item</nz-form-label>
+        <nz-form-control nzSpan="8">
+            <nz-select id="repItem" formControlName="repItem"
+                nzPlaceHolder="Select a option and change input text above">
+                <!-- (ngModelChange)="repItemChange($event)" -->
+                <nz-option nzValue="Principal" nzLabel="Principal"></nz-option>
+                <nz-option nzValue="Interest" nzLabel="Interest"></nz-option>
+                <nz-option nzValue="Penalty" nzLabel="Penalty"></nz-option>
+                <nz-option nzValue="Early Settlement / Prepayment" nzLabel="Early Settlement / Prepayment">
+                </nz-option>
+                <nz-option nzValue="Account Closure / No Dues Letter" nzLabel="Account Closure / No Dues Letter">
+                </nz-option>
+                <nz-option nzValue="Liability Certificate" nzLabel="Liability Certificate"></nz-option>
+                <nz-option nzValue="Return Chq / DDS" nzLabel="Return Chq / DDS"></nz-option>
+                <nz-option nzValue="Expired Documentation Fee" nzLabel="Expired Documentation Fee"></nz-option>
+                <nz-option nzValue="Statement Charges" nzLabel="Statement Charges"></nz-option>
+                <nz-option nzValue="Repayment Schedule" nzLabel="Repayment Schedule"></nz-option>
+            </nz-select>
+        </nz-form-control>
+        <nz-form-label nzSpan="4">Amount</nz-form-label>
+        <nz-form-control nzSpan="8">
+            <nz-input-number formControlName="repAmount" name="repAmount" [nzMin]="0" [nzStep]="10"></nz-input-number>
+            <em>$</em>
+        </nz-form-control>
+    </nz-form-item>
+    <!-- Group together -->
+
+    <nz-form-item class="mb-sm">
+        <nz-form-label nzSpan="4">Value Date</nz-form-label>
+        <nz-form-control nzSpan="8">
+            <nz-date-picker formControlName="valueDate"></nz-date-picker>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item class="mb-sm">
+        <nz-form-label nzSpan="4">Booking Date</nz-form-label>
+        <nz-form-control nzSpan="8">
+            <nz-select id="bookingDate" formControlName="bookingDate" (ngModelChange)="bookingDateChange($event)">
+                <nz-option nzValue="Now" nzLabel="Now" se></nz-option>
+                <nz-option nzValue="BackDate" nzLabel="BackDate"></nz-option>
+            </nz-select>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item class="mb-sm">
+        <nz-form-label nzSpan="4">:</nz-form-label>
+        <nz-form-control nzSpan="8">
+            <label nz-checkbox formControlName="Recalculation">
+                <span>
+                    Choose Pre-Payment Recalculation
+                </span>
+            </label>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item class="mb-sm">
+        <nz-form-label nzSpan="4">-</nz-form-label>
+        <nz-form-control nzSpan="8">
+            <nz-select id="RecalculationSlect" formControlName="RecalculationSlect"
+                (ngModelChange)="RecalculationSlectChange($event)">
+                <nz-option nzValue="REDUCE_NUMBER_OF_INSTALLMENTS_NEW" nzLabel="Reduce Number of Installments">
+                </nz-option>
+                <nz-option nzValue="REDUCE_AMOUNT_PER_INSTALLMENT" nzLabel="Reduce Amount per Installment"></nz-option>
+            </nz-select>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item class="mb-sm">
+        <nz-form-label nzSpan="4">Notes</nz-form-label>
+        <nz-form-control nzSpan="8">
+            <textarea nz-input placeholder="Controlled autosize" [nzAutosize]="{ minRows: 3, maxRows: 5 }"></textarea>
+        </nz-form-control>
+    </nz-form-item>
+
+
+    <div class="modal-footer">
+        <button nz-button type="button" (click)="close()">cancel</button>
+        <button nz-button [nzLoading]="http.loading" [nzType]="'primary'"
+            [style]="{'background-color':'green','color':'white'}">Apply Repayment </button>
+    </div>
+</form>

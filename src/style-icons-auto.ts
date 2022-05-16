@@ -3,6 +3,13 @@
  * @see https://ng-alain.com/cli/plugin#icon
  */
 
+// TODO: Search for this plugin and know how it is working
+/**
+ * any icon we will use we need to get it from ng zooro icons and add it here with suffix Outline
+ *
+ * ------------------  me   -------------------
+ */
+
 import {
   AlipayCircleOutline,
   ApiOutline,
@@ -51,7 +58,9 @@ import {
   TrophyOutline,
   UsbOutline,
   UserOutline,
-  WeiboCircleOutline
+  WeiboCircleOutline,
+  BankOutline,
+  MoneyCollectOutline
 } from '@ant-design/icons-angular/icons';
 
 export const ICONS_AUTO = [
@@ -102,5 +111,7 @@ export const ICONS_AUTO = [
   TrophyOutline,
   UsbOutline,
   UserOutline,
-  WeiboCircleOutline
+  WeiboCircleOutline,
+  BankOutline,
+  MoneyCollectOutline
 ];

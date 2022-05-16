@@ -1,0 +1,68 @@
+<nz-card [nzBordered]="false">
+    <div class="text-lg mb-md">Accounts Summary&nbsp;<i nz-tooltip
+            nzTooltipTitle="Summary of All Pending, Active and Active in Arrears accounts for this group" nz-icon
+            nzType="question-circle"></i>
+    </div>
+    <st #st [data]="accTableArr" [columns]="columns" [body]="accountBody" [page]="{ show: false }" *ngIf="data">
+        <ng-template #accountBody>
+            <tr>
+                <td class="text-left">
+                    <strong>Total</strong>
+                </td>
+                <td></td>
+                <td></td>
+                <td class="text-left">
+                    <strong>{{data.balance}}</strong>
+                </td>
+            </tr>
+        </ng-template>
+    </st>
+</nz-card>
+
+<nz-card [nzBordered]="false" class="mb-lg" *ngIf="data">
+    <div nz-row>
+        <div nz-col nzXs="24" nzSm="12">
+            <sv-container class="mb-lg" title="General" col="1">
+                <sv label="ID">{{data.id}}</sv>
+                <sv label="Group Type">{{data.groupType}}</sv>
+                <sv label="Created">{{data.created}}</sv>
+                <sv label="Last Modified">{{data.lastModified}}</sv>
+                <sv label="Assigned to Branch">{{data.assignedToBranch}}</sv>
+                <sv label="Assigned to Centre">{{data.assignedToCentre}}</sv>
+                <sv label="Assigned to Credit Officer">{{data.assignedToCreditOfficer}}</sv>
+            </sv-container>
+        </div>
+        <div nz-col nzXs="24" nzSm="12">
+            <sv-container class="mb-lg" title="Contact" col="1">
+                <sv label="Preferred Language">{{data.preferredLanguage}}</sv>
+                <!-- <sv>&nbsp;</sv>
+                <sv label="Members (1)">{{data.ddddddd}}</sv> -->
+            </sv-container>
+        </div>
+    </div>
+    <nz-divider></nz-divider>
+    <br>
+    <div nz-row>
+        <div nz-col nzXs="24" nzSm="12">
+            <sv-container class="mb-lg" title="Scienaptic" col="1">
+                <sv label="Application Score">{{data.applicationScore}}</sv>
+                <sv label="Application Risk Segment">{{data.applicationRiskSegment}}</sv>
+                <sv label="Average Annual Revenue">{{data.averageAnnualRevenue}}</sv>
+                <sv label="Debt Burden Ratio">{{data.debtBurdenRatio}}</sv>
+                <sv label="12 Month Offer Limit">{{data['12MonthOfferLimit']}}</sv>
+                <sv label="9 Month Offer Limit">{{data['9MonthOfferLimit']}}</sv>
+                <sv label="6 Month Offer Limit">{{data['6MonthOfferLimit']}}</sv>
+                <sv label="3 Month Offer Limit">{{data['3MonthOfferLimit']}}</sv>
+                <sv label="Total Score">{{data.totalScore}}</sv>
+            </sv-container>
+        </div>
+        <div nz-col nzXs="24" nzSm="12">
+            <sv-container class="mb-lg" title="General" col="1">
+                <sv label="Industry">{{data.industry}}</sv>
+                <sv label="Emirates">{{data.emirates}}</sv>
+                <sv label="AML Risk Rating">{{data.amlRiskRating}}</sv>
+                <sv label="Total Score">{{data.totalScore}}</sv>
+            </sv-container>
+        </div>
+    </div>
+</nz-card>
